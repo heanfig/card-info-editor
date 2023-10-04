@@ -1,38 +1,65 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
- */
-import { __ } from '@wordpress/i18n';
+import { __ } from "@wordpress/i18n";
+import { TextControl, TextareaControl } from "@wordpress/components";
+import { MediaUpload, useBlockProps } from "@wordpress/block-editor";
+import "./editor.scss";
 
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-import { useBlockProps } from '@wordpress/block-editor';
-
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
-import './editor.scss';
-
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
- * @return {WPElement} Element to render.
- */
-export default function Edit() {
+export default function Edit({ attributes, setAttributes }) {
+	const { title, role, description, imageUrl, imageId } = attributes;
 	return (
-		<p {...useBlockProps()}>
-			{__('Card Info Block – hello from the editor!', 'card-info-block')}
-		</p>
+		<div {...useBlockProps()}>
+			<div class="card-info expanded" id="card">
+				<MediaUpload
+					onSelect={(media) =>
+						setAttributes({ imageUrl: media.url, imageId: media.id })
+					}
+					allowedTypes={["image"]}
+					value={imageId}
+					render={({ open }) => (
+						<button onClick={open}>
+							{!imageUrl ? (
+								"Seleccionar imagen"
+							) : (
+								<img src={imageUrl} alt={title} />
+							)}
+						</button>
+					)}
+				/>
+				<div class="card-content">
+					<h3>
+						<TextControl
+							label="Title"
+							value={title}
+							onChange={(newTitle) => setAttributes({ title: newTitle })}
+						/>
+					</h3>
+					<p>
+						<TextControl
+							label="Role"
+							value={role}
+							onChange={(newRole) => setAttributes({ role: newRole })}
+						/>
+					</p>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						fill="currentColor"
+						class="icon bi bi-linkedin"
+						viewBox="0 0 16 16"
+					>
+						<path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
+					</svg>
+				</div>
+				<div class="expand-content">
+					<TextareaControl
+						label="Description"
+						value={description}
+						onChange={(newDescription) =>
+							setAttributes({ description: newDescription })
+						}
+					/>
+				</div>
+			</div>
+		</div>
 	);
 }

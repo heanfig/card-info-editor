@@ -15,16 +15,14 @@ import { useBlockProps } from "@wordpress/block-editor";
  *
  * @return {WPElement} Element to render.
  */
-export default function save() {
+export default function save({ attributes }) {
+	const { title, role, description, imageUrl } = attributes;
 	return (
 		<div class="card-info" id="card" {...useBlockProps.save()}>
-			<img
-				src="https://media.licdn.com/dms/image/C4E03AQHYZfYecMbT-Q/profile-displayphoto-shrink_800_800/0/1516820445051?e=1701907200&v=beta&t=YjH31KXhFi7awQ9fAloyxTk6bhwbclFBNHQ3nn-EYuM"
-				alt="Zoltan Burnat"
-			/>
+			{imageUrl && <img src={imageUrl} alt={title} />}
 			<div class="card-content">
-				<h3>Zoltan Burnat</h3>
-				<p>VP of Operations</p>
+				<h3>{title}</h3>
+				<p>{role}</p>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="16"
@@ -37,8 +35,7 @@ export default function save() {
 				</svg>
 			</div>
 			<div class="expand-content">
-				<p>25+ years of commercial insurance / MGA experience</p>
-				<p>3 years Head of Open Innovation, Markel Corporation</p>
+				<p>{description}</p>
 			</div>
 		</div>
 	);

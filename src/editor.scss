@@ -7,3 +7,73 @@
 .wp-block-create-block-card-info-block {
 	border: 1px dotted #f00;
 }
+
+.card-info {
+	display: flex;
+	align-items: center;
+	width: 330px;
+	padding: 15px;
+	border: 1px solid #ccc;
+	cursor: pointer;
+	overflow: hidden;
+	transition: width 0.5s ease;
+	min-height: 120px;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+	background-color: #ececfa;
+	border-radius: 0 8rem 8rem 0;
+	font-family: 'Open Sans', sans-serif;
+	color: #2f228c;
+
+	& h3 {
+		font-weight: bold;
+		color: #2f228c
+	}
+}
+
+.card-info img {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.card-content {
+	flex: none;
+	width: 150px;
+	padding: 1.5rem;
+
+	& p,
+	& h3 {
+		margin: 3px 0;
+	}
+
+	& .icon {
+		width: 25px;
+		height: 25px;
+	}
+}
+
+.expand-content {
+	flex-grow: 1;
+	overflow: hidden;
+	transition: width 0.5s ease-in-out, opacity 0.5s ease-in-out;
+	opacity: 1;
+	width: 0;
+	height: 120px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	& p {
+		margin: 3px 0;
+		font-weight: 600;
+	}
+}
+
+.card-info.expanded {
+	width: 800px;
+}
+
+.card-info.expanded .expand-content {
+	width: auto;
+}
