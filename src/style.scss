@@ -10,7 +10,7 @@
 	display: flex;
 	align-items: center;
 	width: 45%;
-	margin: 5% 35% 2% 0;
+    margin: 2rem 0;
 	padding: 3% 9% 3% 9%;
 	cursor: pointer;
 	overflow: hidden;
@@ -39,7 +39,7 @@
 	flex: none;
 	width: 150px;
 	padding: 1.5rem;
-    width: 35%;
+	width: 35%;
 
 	& p,
 	& h3 {
@@ -49,6 +49,18 @@
 	& .icon {
 		width: 25px;
 		height: 25px;
+	}
+
+	& .card-content-info {
+		font-family: "Lato";
+		display: flex;
+		font-size: 30px;
+		align-items: center;
+		gap: 0.5rem;
+		
+		&--icon{
+			display: flex;
+		}
 	}
 }
 
@@ -65,15 +77,25 @@
 
 	& p {
 		margin: 3px 0;
-		font-size: 24px;
+		font-size: 22px;
 		font-family: "Lato";
 	}
 }
 
 .card-info.expanded {
-    width: 80%;
+	width: 80%;
 }
 
 .card-info.expanded .expand-content {
 	width: auto;
+}
+
+.card-wrapper.rtl .card-info {
+    margin: 0;
+    border-radius: 11rem 0 0 11rem;
+}
+
+.card-wrapper.rtl {
+    display: flex;
+    justify-content: end;
 }

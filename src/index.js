@@ -44,6 +44,14 @@ registerBlockType(metadata.name, {
 			type: "string",
 			default: "",
 		},
+		link: {
+			type: "string",
+			default: "",
+		},
+		style: {
+			type: "string",
+			default: "ltr",
+		},
 		imageId: {
 			type: "number",
 		},

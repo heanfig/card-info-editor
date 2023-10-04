@@ -16,26 +16,39 @@ import { useBlockProps } from "@wordpress/block-editor";
  * @return {WPElement} Element to render.
  */
 export default function save({ attributes }) {
-	const { title, role, description, imageUrl } = attributes;
+	const { title, role, description, imageUrl, link, style } = attributes;
 	return (
-		<div class="card-info" id="card" {...useBlockProps.save()}>
-			{imageUrl && <img src={imageUrl} alt={title} />}
-			<div class="card-content">
-				<h3>{title}</h3>
-				<p>{role}</p>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="16"
-					height="16"
-					fill="currentColor"
-					class="icon bi bi-linkedin"
-					viewBox="0 0 16 16"
-				>
-					<path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
-				</svg>
-			</div>
-			<div class="expand-content">
-				<p>{description}</p>
+		<div class={`card-wrapper ${style}`} {...useBlockProps.save()}>
+			<div class="card-info" id="card">
+				{imageUrl && <img src={imageUrl} alt={title} />}
+				<div class="card-content">
+					<h3>{title}</h3>
+					<div class="card-content-info">
+						<p>{role}</p>
+						<div class="card-content-info--icon">
+							<a href={link} target="_blank" rel="noopener">
+								<svg
+									width="35"
+									height="35"
+									viewBox="0 0 35 35"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<rect width="35" height="35" rx="2" fill="#4A36CA"></rect>
+									<path
+										fill-rule="evenodd"
+										clip-rule="evenodd"
+										d="M15.0575 14.6206H18.5858V16.378C19.0941 15.3672 20.3975 14.4591 22.3554 14.4591C26.1089 14.4591 27 16.4712 27 20.1629V27H23.2V21.0036C23.2 18.9012 22.6918 17.7157 21.3979 17.7157C19.6033 17.7157 18.8575 18.9934 18.8575 21.0027V27H15.0575V14.6206ZM8.5415 26.8385H12.3415V14.4591H8.5415V26.8385ZM12.8858 10.4225C12.886 10.741 12.8228 11.0564 12.7 11.3503C12.5772 11.6441 12.3972 11.9107 12.1705 12.1344C11.7111 12.591 11.0892 12.8466 10.4415 12.845C9.79492 12.8446 9.1745 12.5896 8.7144 12.1354C8.4885 11.9109 8.30912 11.644 8.18653 11.3501C8.06394 11.0562 8.00055 10.741 8 10.4225C8 9.77935 8.2565 9.16375 8.71535 8.70965C9.17504 8.25475 9.79573 7.99972 10.4425 8C11.0904 8 11.7116 8.25555 12.1705 8.70965C12.6284 9.16375 12.8858 9.77935 12.8858 10.4225Z"
+										fill="white"
+									></path>
+								</svg>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="expand-content">
+					<p>{description}</p>
+				</div>
 			</div>
 		</div>
 	);

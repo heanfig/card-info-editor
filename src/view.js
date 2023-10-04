@@ -21,22 +21,24 @@
  */
 
 /* eslint-disable no-console */
-const card = document.querySelector(".card-info");
-const expandContent = document.querySelector(".expand-content");
+const cards = document.querySelectorAll(".card-info");
 
-card.addEventListener("click", function () {
-	card.classList.toggle("expanded");
-
-	if (card.classList.contains("expanded")) {
-		card.addEventListener(
-			"transitionend",
-			function () {
-				expandContent.style.opacity = "1";
-			},
-			{ once: true },
-		);
-	} else {
-		expandContent.style.opacity = "0";
-	}
-});
+cards.forEach(card => {
+	card.addEventListener("click", function (e) {
+		const expandContent = e.currentTarget.querySelector(".expand-content");
+		card.classList.toggle("expanded");
+	
+		if (card.classList.contains("expanded")) {
+			card.addEventListener(
+				"transitionend",
+				function () {
+					expandContent.style.opacity = "1";
+				},
+				{ once: true },
+			);
+		} else {
+			expandContent.style.opacity = "0";
+		}
+	});
+})
 /* eslint-enable no-console */
