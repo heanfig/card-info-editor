@@ -1,1 +1,1 @@
-console.log("Hello World! (from create-block-card-info-block block)");
+!function(){const e=document.querySelector(".card-info"),n=document.querySelector(".expand-content");e.addEventListener("click",(function(){e.classList.toggle("expanded"),e.classList.contains("expanded")?e.addEventListener("transitionend",(function(){n.style.opacity="1"}),{once:!0}):n.style.opacity="0"}))}();
