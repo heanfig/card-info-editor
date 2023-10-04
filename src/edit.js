@@ -7,7 +7,7 @@ export default function Edit({ attributes, setAttributes }) {
 	const { title, role, description, imageUrl, imageId, link, style } = attributes;
 	return (
 		<div {...useBlockProps()}>
-			<div class="card-info expanded" id="card">
+			<div class={`card-info expanded ${style}`} id="card">
 				<div class="card-info-meta">
 					<MediaUpload
 						onSelect={(media) =>
