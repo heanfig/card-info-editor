@@ -4,12 +4,23 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-$breakpoint-xxl: 1450px;
+
+// use breakpoint to disable Javascript event
+:root {
+	--breakpoint-disable-events: 992px;
+}
+
+// Font
+$font-base: "Lato";
+
+// Media Queries
+$breakpoint-xxl: 1440px;
 $breakpoint-xl : 1200px;
 $breakpoint-lg : 992px;
+$breakpoint-sm : 480px;
 
 .card-info {
-	font-family: "Lato";
+	font-family: $font-base;
 	display: flex;
 	align-items: center;
 	width: 45%;
@@ -18,7 +29,6 @@ $breakpoint-lg : 992px;
 	cursor: pointer;
 	overflow: hidden;
 	transition: width 0.5s ease;
-	min-height: 120px;
 	background-color: #ececfa;
 	border-radius: 0 11rem 11rem 0;
 	font-family: 'Open Sans', sans-serif;
@@ -28,15 +38,37 @@ $breakpoint-lg : 992px;
 	& h3 {
 		font-size: 48px;
 		font-weight: bold;
-		color: #2f228c
-	}
-}
+		color: #2f228c;
 
-.card-info img {
-	width: 250px;
-	height: 250px;
-	border-radius: 50%;
-	flex-shrink: 0;
+		@media (max-width: $breakpoint-lg) {
+			font-size: 20px;
+		}
+	}
+
+	& img {
+		width: 250px;
+		height: auto;
+		border-radius: 50%;
+		flex-shrink: 0;
+
+		@media (max-width: $breakpoint-lg) {
+			max-width: 150px;
+			cursor: auto;
+		}
+
+		@media (max-width: $breakpoint-sm) {
+			width: 80px;
+		}
+	}
+
+	@media (max-width: $breakpoint-xxl) {
+		width: 700px;
+	}
+
+	@media (max-width: $breakpoint-lg) {
+		width: 100%;
+		min-height: auto;
+	}
 }
 
 .card-content {
@@ -56,7 +88,7 @@ $breakpoint-lg : 992px;
 	}
 
 	& .card-content-info {
-		font-family: "Lato";
+		font-family: $font-base;
 		display: flex;
 		font-size: 30px;
 		align-items: center;
@@ -64,6 +96,14 @@ $breakpoint-lg : 992px;
 
 		&--icon {
 			display: flex;
+		}
+
+		@media (max-width: $breakpoint-lg) {
+			font-size: 15px;
+		}
+
+		@media (max-width: $breakpoint-sm) {
+			font-size: 17px;
 		}
 	}
 }
@@ -83,20 +123,38 @@ $breakpoint-lg : 992px;
 	& p {
 		margin: 3px 0;
 		font-size: 22px;
-		font-family: "Lato";
+		font-family: $font-base;
+
+		@media (max-width: $breakpoint-lg) {
+			font-size: 15px;
+		}
+	}
+
+	@media (max-width: $breakpoint-lg) {
+		opacity: 1 !important; //override javascript style
+	}
+
+	@media (max-width: $breakpoint-xxl) {
+		height: -webkit-fill-available;
 	}
 }
 
 .card-info.expanded {
 	width: 80%;
+
 	@media (max-width: $breakpoint-xl) {
 		width: 90%;
+	}
+
+	@media (max-width: $breakpoint-lg) {
+		width: 100%;
 	}
 }
 
 .card-info.expanded .expand-content {
 	width: auto;
 	padding: 3rem;
+
 	@media (max-width: $breakpoint-xxl) {
 		padding: 1rem;
 		height: -webkit-fill-available;
@@ -104,7 +162,6 @@ $breakpoint-lg : 992px;
 }
 
 .card-wrapper.rtl .card-info {
-	margin: 0;
 	border-radius: 11rem 0 0 11rem;
 }
 

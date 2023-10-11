@@ -22,23 +22,27 @@
 
 /* eslint-disable no-console */
 const cards = document.querySelectorAll(".card-info");
+var style = getComputedStyle(document.body);
+const breakpoint = style.getPropertyValue("--breakpoint-disable-events");
 
-cards.forEach(card => {
+cards.forEach((card) => {
 	card.addEventListener("click", function (e) {
-		const expandContent = e.currentTarget.querySelector(".expand-content");
-		card.classList.toggle("expanded");
-	
-		if (card.classList.contains("expanded")) {
-			card.addEventListener(
-				"transitionend",
-				function () {
-					expandContent.style.opacity = "1";
-				},
-				{ once: true },
-			);
-		} else {
-			expandContent.style.opacity = "0";
+		if (window.matchMedia(`(min-width: ${breakpoint})`).matches) {
+			const expandContent = e.currentTarget.querySelector(".expand-content");
+			card.classList.toggle("expanded");
+
+			if (card.classList.contains("expanded")) {
+				card.addEventListener(
+					"transitionend",
+					function () {
+						expandContent.style.opacity = "1";
+					},
+					{ once: true },
+				);
+			} else {
+				expandContent.style.opacity = "0";
+			}
 		}
 	});
-})
+});
 /* eslint-enable no-console */
