@@ -19,6 +19,10 @@ $breakpoint-xl : 1200px;
 $breakpoint-lg : 992px;
 $breakpoint-sm : 480px;
 
+// Colors
+$primary: #2f228c;
+$bg-card: #ececfa;
+
 .card-info {
 	font-family: $font-base;
 	display: flex;
@@ -29,16 +33,15 @@ $breakpoint-sm : 480px;
 	cursor: pointer;
 	overflow: hidden;
 	transition: width 0.5s ease;
-	background-color: #ececfa;
+	background-color: $bg-card;
 	border-radius: 0 11rem 11rem 0;
-	font-family: 'Open Sans', sans-serif;
-	color: #2f228c;
+	color: $primary;
 	min-height: 400px;
 
 	& h3 {
 		font-size: 48px;
 		font-weight: bold;
-		color: #2f228c;
+		color: $primary;
 
 		@media (max-width: $breakpoint-lg) {
 			font-size: 20px;
